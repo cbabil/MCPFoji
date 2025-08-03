@@ -15,7 +15,7 @@ def parse_args():
     )
     parser.add_argument(
         "--spec-url",
-        default="https://raw.githubusercontent.com/s0tephen/goBackend-demo/main/docs/swagger.json",
+        required=True,
         help="The URL of the Swagger/OpenAPI specification."
     )
     parser.add_argument(
