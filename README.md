@@ -1,5 +1,3 @@
-# MCPFoji
-
 <p align="center">
   <img src="assets/mcpfoji.png" alt="MCPFoji Logo">
 </p>
@@ -8,37 +6,27 @@
   <em>An MCP server that dynamically generates tools from Swagger/OpenAPI specifications</em>
 </p>
 
-<p align="center">
-  <a href="https://github.com/cbabil/MCPFoji/releases">
-    <img src="https://img.shields.io/github/v/release/cbabil/MCPFoji?style=for-the-badge&color=blue" alt="Latest Release">
-  </a>
-  <a href="https://github.com/cbabil/MCPFoji/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/cbabil/MCPFoji?style=for-the-badge&color=green" alt="License">
-  </a>
-  <a href="https://github.com/cbabil/MCPFoji/issues">
-    <img src="https://img.shields.io/github/issues/cbabil/MCPFoji?style=for-the-badge&color=orange" alt="Issues">
-  </a>
-  <a href="https://github.com/cbabil/MCPFoji/stars">
-    <img src="https://img.shields.io/github/stars/cbabil/MCPFoji?style=for-the-badge&color=yellow" alt="Stars">
-  </a>
-</p>
+<br>
+
+<div align="center">
+
+[![Latest Release](https://img.shields.io/github/v/release/cbabil/MCPFoji?style=flat&logo=github&logoColor=white&color=2563eb)](https://github.com/cbabil/MCPFoji/releases)
+[![License](https://img.shields.io/github/license/cbabil/MCPFoji?style=flat&color=10b981)](https://github.com/cbabil/MCPFoji/blob/main/LICENSE)
+[![Issues](https://img.shields.io/github/issues/cbabil/MCPFoji?style=flat&color=f59e0b)](https://github.com/cbabil/MCPFoji/issues)
+[![Stars](https://img.shields.io/github/stars/cbabil/MCPFoji?style=flat&color=eab308)](https://github.com/cbabil/MCPFoji/stargazers)
+
+[![Python](https://img.shields.io/badge/Python-3.8+-3776ab?style=flat&logo=python&logoColor=white)](https://python.org)
+[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-8b5cf6?style=flat)](https://modelcontextprotocol.io/)
+[![OpenAPI](https://img.shields.io/badge/OpenAPI-3.x-6ba539?style=flat&logo=openapiinitiative&logoColor=white)](https://spec.openapis.org/oas/latest.html)
+
+</div>
+
+<br>
 
 <p align="center">
-  <a href="https://python.org">
-    <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python&logoColor=white" alt="Python">
-  </a>
-  <a href="https://modelcontextprotocol.io/">
-    <img src="https://img.shields.io/badge/MCP-Compatible-purple?style=flat-square" alt="MCP Compatible">
-  </a>
-  <a href="https://spec.openapis.org/oas/latest.html">
-    <img src="https://img.shields.io/badge/OpenAPI-3.x-green?style=flat-square&logo=openapiinitiative&logoColor=white" alt="OpenAPI">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://github.com/cbabil/MCPFoji/wiki">📖 Documentation</a> •
-  <a href="https://github.com/cbabil/MCPFoji/issues">🐛 Issues</a> •
-  <a href="https://github.com/cbabil/MCPFoji/discussions">💬 Discussions</a> •
+  <a href="https://github.com/cbabil/MCPFoji/wiki">📖 Documentation</a> |
+  <a href="https://github.com/cbabil/MCPFoji/issues">🐛 Issues</a> |
+  <a href="https://github.com/cbabil/MCPFoji/discussions">💬 Discussions</a> |
   <a href="https://github.com/cbabil/MCPFoji/releases">🚀 Releases</a>
 </p>
 
@@ -245,7 +233,6 @@ This project is licensed under the terms specified in the [LICENSE](LICENSE) fil
 - **Check the [Wiki](https://github.com/cbabil/MCPFoji/wiki)** for detailed documentation
 - **Search [existing issues](https://github.com/cbabil/MCPFoji/issues)** before creating new ones
 - **Use [Discussions](https://github.com/cbabil/MCPFoji/discussions)** for questions and community support
-- **Tag [@cbabil](https://github.com/cbabil)** for urgent issues or security concerns
 
 ## 🙏 Acknowledgments
 
