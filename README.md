@@ -179,15 +179,6 @@ MCPFoji implements a sophisticated microservice architecture that transforms Ope
 ### Data Flow
 
 ```mermaid
----
-config:
-  theme: base
-  themeVariables:
-    primaryColor: "#ffffff"
-    primaryTextColor: "#000000"
-    primaryBorderColor: "#000000"
-    lineColor: "#000000"
----
 sequenceDiagram
     participant AI as AI Assistant
     participant MCP as MCPFoji Server
