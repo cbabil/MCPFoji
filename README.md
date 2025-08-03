@@ -125,25 +125,98 @@ python src/main.py \
 ```
 </details>
 
-## 🏗️ Architecture
+## 🏗️ Architecture & Design
 
-MCPFoji follows a clean, modular architecture designed for reliability and extensibility:
+MCPFoji implements a sophisticated microservice architecture that transforms OpenAPI specifications into fully functional MCP tools through a robust, multi-stage processing pipeline.
 
-```mermaid
-graph LR
-    A[OpenAPI Spec] --> B[MCPFoji Server]
-    B --> C[MCP Tools]
-    C --> D[AI Assistant]
-    D --> E[Target API]
+### System Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   OpenAPI Spec  │───▶│   MCPFoji Core   │───▶│   MCP Server    │
+│   (Remote URL)  │    │                  │    │  (stdio/http)   │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+                              │                          │
+                              ▼                          ▼
+                       ┌──────────────────┐    ┌─────────────────┐
+                       │  Tool Generator  │    │  AI Assistant   │
+                       │   & Validator    │    │   Integration   │
+                       └──────────────────┘    └─────────────────┘
+                              │                          │
+                              ▼                          ▼
+                       ┌──────────────────┐    ┌─────────────────┐
+                       │   HTTP Client    │───▶│   Target API    │
+                       │     Pool         │    │   Endpoints     │
+                       └──────────────────┘    └─────────────────┘
 ```
 
-### Processing Flow
+### Core Components
 
-1. **Specification Loading**: Fetches and validates OpenAPI specifications from remote URLs
-2. **Reference Resolution**: Automatically resolves external YAML/JSON references  
-3. **Tool Generation**: Converts API endpoints into typed MCP tools with proper schemas
-4. **Server Initialization**: Starts the MCP server with the configured transport protocol
-5. **Request Handling**: Routes MCP tool calls to the appropriate API endpoints
+#### 1. **Specification Processor**
+- **YAML/JSON Parser**: Handles complex OpenAPI specifications with nested references
+- **Reference Resolver**: Automatically resolves `$ref` pointers across multiple files
+- **Schema Validator**: Ensures OpenAPI compliance and validates endpoint definitions
+- **Error Handling**: Comprehensive error reporting for malformed specifications
+
+#### 2. **Dynamic Tool Generator**
+- **Endpoint Mapping**: Converts REST endpoints to MCP tool definitions
+- **Type System**: Generates strongly-typed schemas from OpenAPI parameters
+- **Documentation Extraction**: Preserves API documentation as tool descriptions
+- **Request Builder**: Constructs HTTP requests from MCP tool invocations
+
+#### 3. **Transport Layer**
+- **Multiple Protocols**: Native support for stdio, HTTP, and Server-Sent Events
+- **Connection Management**: Efficient connection pooling and lifecycle management
+- **Error Recovery**: Automatic retry mechanisms and circuit breaker patterns
+- **Security**: Built-in request validation and sanitization
+
+#### 4. **Runtime Engine**
+- **Async Processing**: Non-blocking I/O for high-performance operations
+- **Request Routing**: Intelligent routing of MCP calls to appropriate API endpoints
+- **Response Transformation**: Converts API responses to MCP-compatible formats
+- **Logging & Monitoring**: Comprehensive observability with structured logging
+
+### Data Flow
+
+```mermaid
+sequenceDiagram
+    participant AI as AI Assistant
+    participant MCP as MCPFoji Server
+    participant API as Target API
+    participant Spec as OpenAPI Spec
+
+    Note over MCP: Initialization Phase
+    MCP->>Spec: Fetch specification
+    Spec-->>MCP: OpenAPI document
+    MCP->>MCP: Parse & validate spec
+    MCP->>MCP: Generate MCP tools
+    
+    Note over AI,API: Runtime Phase
+    AI->>MCP: Invoke MCP tool
+    MCP->>MCP: Validate parameters
+    MCP->>API: HTTP request
+    API-->>MCP: API response
+    MCP->>MCP: Transform response
+    MCP-->>AI: MCP result
+```
+
+### Technical Specifications
+
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Core Runtime** | Python 3.8+ | High-performance async processing |
+| **HTTP Client** | httpx | Modern async HTTP client with connection pooling |
+| **Schema Processing** | PyYAML + jsonref | OpenAPI specification parsing and resolution |
+| **MCP Framework** | FastMCP | Model Context Protocol implementation |
+| **Transport** | Multiple protocols | Flexible deployment options |
+
+### Security & Reliability
+
+- **Input Validation**: All parameters validated against OpenAPI schemas
+- **Rate Limiting**: Configurable request throttling to protect target APIs
+- **Error Isolation**: Failures in one tool don't affect others
+- **Graceful Degradation**: Continues operation even with partial spec failures
+- **Audit Logging**: Complete request/response logging for debugging and compliance
 
 ## 🔧 Advanced Configuration
 
