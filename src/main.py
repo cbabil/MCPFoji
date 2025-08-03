@@ -15,17 +15,13 @@ def yaml_loader(uri):
 
 def load_openapi_spec(spec_url: str) -> dict:
     """Loads an OpenAPI spec from a URL, resolving external references."""
-    logging.info("Fetching main spec from %s", spec_url)
-    # The spec_url is the URL to the docs page. The actual spec is in a relative path.
-    spec_path = "specs/main.yaml"
-    full_spec_url = urljoin(spec_url, spec_path)
-    logging.info("Full spec URL: %s", full_spec_url)
+    logging.info("Fetching spec from %s", spec_url)
     
     # Load the root spec
-    base_spec = yaml_loader(full_spec_url)
+    base_spec = yaml_loader(spec_url)
 
-    # Resolve external references
-    resolved_spec = JsonRef.replace_refs(base_spec, base_uri=full_spec_url, loader=yaml_loader)
+    # Resolve external references, using the spec's URL as the base for relative refs
+    resolved_spec = JsonRef.replace_refs(base_spec, base_uri=spec_url, loader=yaml_loader)
     
     return resolved_spec
 
