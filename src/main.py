@@ -1,11 +1,8 @@
 import httpx
 from fastmcp import FastMCP
+from lib.args import parse_args
+from lib.logger import setup_logging
 import logging
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-)
 
 def run_server(args):
     """Initializes and runs the FastMCP server."""
@@ -26,7 +23,7 @@ def run_server(args):
     mcp = FastMCP.from_openapi(
         openapi_spec=openapi_spec,
         client=client,
-        name="SwaggerMCP"
+        name="MCPFoji"
     )
 
     logging.info("Starting server with transport: %s", args.transport)
@@ -38,3 +35,12 @@ def run_server(args):
         )
     else:
         mcp.run(transport=args.transport)
+
+def main():
+    """Main entry point of the script."""
+    setup_logging()
+    args = parse_args()
+    run_server(args)
+
+if __name__ == "__main__":
+    main()
