@@ -1,7 +1,7 @@
 import httpx
 from fastmcp import FastMCP
-from lib.args import parse_args
-from lib.logger import setup_logging
+from src.lib.args import parse_args
+from src.lib.logger import setup_logging
 import logging
 import yaml
 from urllib.parse import urljoin
